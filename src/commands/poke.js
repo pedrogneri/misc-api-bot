@@ -26,14 +26,29 @@ const getPokemon = async (parameter) => {
   return data;
 };
 
+const getCapitalizedName = (name) => {
+  const [first, ...rest] = name.split("");
+  const upper = first.toUpperCase();
+
+  return upper + rest.join("");
+};
+
 const searchById = async (args) => {
   const embed = new MessageEmbed();
 
   try {
     const pokemon = await getPokemon(args);
+    const name = getCapitalizedName(pokemon.name);
+    let description = "";
 
-    embed.setTitle(`#${pokemon.id} - ${pokemon.name}`);
-    embed.setImage(pokemon.sprites.front_default);
+    embed.setTitle(`Nº ${pokemon.id}\n${name}`);
+    embed.setImage(pokemon.sprites.other["official-artwork"].front_default);
+
+    pokemon.types.map(({ type }) => {
+      description += ` \`${type.name}\``;
+    });
+
+    embed.setDescription(description);
 
     const palette = await Vibrant.from(
       pokemon.sprites.front_default
@@ -43,7 +58,7 @@ const searchById = async (args) => {
     embed.setColor(color);
   } catch (e) {
     embed.setTitle(`Failed :(`);
-    embed.setDescription(`No pokemon find for query ${args}`);
+    embed.setDescription(`No pokemon find for query "${args.join(" ")}"`);
     embed.setColor("RED");
   }
 
