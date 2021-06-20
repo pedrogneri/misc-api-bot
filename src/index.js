@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 const { Client } = require("discord.js");
-const { poke, doggo } = require("./commands");
+const commands = require("./commands");
 
 dotenv.config();
 
@@ -12,19 +12,8 @@ client.on("message", async (message) => {
   const messageContent = message.content;
 
   if (messageContent.startsWith(PREFIX)) {
-    const [command, ...args] = messageContent.substring(1).split(/\s+/);
-    let response;
-
-    switch (command) {
-      case poke.COMMAND:
-        response = await poke.searchById(args);
-        break;
-      case doggo.COMMAND:
-        response = await doggo.getRandomDoggo();
-        break;
-      default:
-        return;
-    }
+    const [cmd, ...args] = messageContent.substring(1).split(/\s+/);
+    const response = await commands[cmd](args);
 
     message.channel.send(response);
   }

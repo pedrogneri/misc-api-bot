@@ -45,7 +45,7 @@ const getPredominantColor = async (image) => {
   }
 };
 
-const searchById = async (args) => {
+const action = async (args) => {
   const embed = new MessageEmbed();
 
   try {
@@ -75,4 +75,4 @@ const searchById = async (args) => {
   return embed;
 };
 
-module.exports = { searchById, COMMAND };
+module.exports = { COMMAND, action };

@@ -1,4 +1,9 @@
 const poke = require("./poke");
 const doggo = require("./doggo");
 
-module.exports = { poke, doggo };
+const commands = {
+  [poke.COMMAND]: poke.action,
+  [doggo.COMMAND]: doggo.action,
+};
+
+module.exports = commands;

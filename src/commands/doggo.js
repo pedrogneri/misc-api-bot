@@ -11,7 +11,7 @@ const getDogImage = async () => {
   return data[0].url;
 };
 
-const getRandomDoggo = async () => {
+const action = async () => {
   const embed = new MessageEmbed();
 
   try {
@@ -29,4 +29,4 @@ const getRandomDoggo = async () => {
   return embed;
 };
 
-module.exports = { COMMAND, getRandomDoggo };
+module.exports = { COMMAND, action };
