@@ -2,6 +2,8 @@ const axios = require("axios");
 const { MessageEmbed } = require("discord.js");
 const Vibrant = require("node-vibrant");
 
+const COMMAND = "poke";
+
 const getColorHex = (rgb) => {
   let color = "#";
 
@@ -73,4 +75,4 @@ const searchById = async (args) => {
   return embed;
 };
 
-module.exports = { searchById };
+module.exports = { searchById, COMMAND };

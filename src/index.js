@@ -16,7 +16,7 @@ client.on("message", async (message) => {
     let response;
 
     switch (command) {
-      case "poke":
+      case poke.COMMAND:
         response = await poke.searchById(args);
         break;
       default:
