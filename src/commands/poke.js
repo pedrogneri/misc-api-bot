@@ -45,7 +45,7 @@ const getPredominantColor = async (image) => {
   }
 };
 
-const action = async (args) => {
+const action = async (message, args) => {
   const embed = new MessageEmbed();
 
   try {
@@ -73,7 +73,7 @@ const action = async (args) => {
     embed.setColor("RED");
   }
 
-  return embed;
+  message.channel.send(embed);
 };
 
 module.exports = { COMMAND, action };

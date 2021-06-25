@@ -11,7 +11,7 @@ const getDogImage = async () => {
   return data[0].url;
 };
 
-const action = async () => {
+const action = async (message) => {
   const embed = new MessageEmbed();
 
   try {
@@ -26,7 +26,7 @@ const action = async () => {
     embed.setColor("RED");
   }
 
-  return embed;
+  message.channel.send(embed);
 };
 
 module.exports = { COMMAND, action };
