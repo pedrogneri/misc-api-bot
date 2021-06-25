@@ -54,7 +54,9 @@ const action = async (args) => {
     const image = pokemon.sprites.other["official-artwork"].front_default;
     const color = await getPredominantColor(image);
 
-    let description = "";
+    const number = `Nº ${pokemon.id}\n`;
+
+    let description = number;
 
     embed.setTitle(`${name}`);
     embed.setThumbnail(image);
@@ -65,7 +67,6 @@ const action = async (args) => {
     });
 
     embed.setDescription(description);
-    embed.setFooter(`Nº ${pokemon.id}`);
   } catch (e) {
     embed.setTitle(`Failed :(`);
     embed.setDescription(`No pokemon find for query "${args.join(" ")}"`);
