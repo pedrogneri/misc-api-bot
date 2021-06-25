@@ -13,7 +13,11 @@ client.on("message", async (message) => {
 
   if (messageContent.startsWith(PREFIX)) {
     const [cmd, ...args] = messageContent.substring(1).split(/\s+/);
-    await commands[cmd](message, args);
+    const action = commands[cmd];
+
+    if (action) {
+      await action(message, args);
+    }
   }
 });
 
