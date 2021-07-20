@@ -3,4 +3,4 @@ const APIS_URL = {
   theDogAPI: "https://api.thedogapi.com/v1/images/search",
 };
 
-module.exports = APIS_URL;
+export default APIS_URL;

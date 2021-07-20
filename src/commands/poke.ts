@@ -1,12 +1,12 @@
-const axios = require("axios");
-const { MessageEmbed } = require("discord.js");
-const Vibrant = require("node-vibrant");
-const APIS_URL = require("../apis");
+import axios from "axios";
+import { MessageEmbed, Message } from "discord.js";
+import Vibrant from "node-vibrant";
+import APIS_URL from "../apis";
 
 const COMMAND = "poke";
 const URL = APIS_URL.pokeAPI;
 
-const getColorHex = (rgb) => {
+const getColorHex = (rgb: number[]) => {
   let color = "#";
 
   rgb.map((code) => {
@@ -22,20 +22,20 @@ const getColorHex = (rgb) => {
   return color;
 };
 
-const getPokemon = async (parameter) => {
+const getPokemon = async (parameter: string) => {
   const { data } = await axios.get(`${URL}/${parameter}`);
 
   return data;
 };
 
-const getCapitalizedName = (name) => {
+const getCapitalizedName = (name: string) => {
   const [first, ...rest] = name.split("");
   const upper = first.toUpperCase();
 
   return upper + rest.join("");
 };
 
-const getPredominantColor = async (image) => {
+const getPredominantColor = async (image: string) => {
   try {
     const palette = await Vibrant.from(image).getPalette();
 
@@ -45,11 +45,11 @@ const getPredominantColor = async (image) => {
   }
 };
 
-const action = async (message, args) => {
+const action = async (message: Message, args: string[]) => {
   const embed = new MessageEmbed();
 
   try {
-    const pokemon = await getPokemon(args);
+    const pokemon = await getPokemon(args[0]);
     const name = getCapitalizedName(pokemon.name);
     const image = pokemon.sprites.other["official-artwork"].front_default;
     const color = await getPredominantColor(image);
@@ -76,4 +76,4 @@ const action = async (message, args) => {
   message.channel.send(embed);
 };
 
-module.exports = { COMMAND, action };
+export default { COMMAND, action };

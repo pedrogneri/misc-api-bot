@@ -1,6 +1,6 @@
-const dotenv = require("dotenv");
-const { Client } = require("discord.js");
-const commands = require("./commands");
+import dotenv from "dotenv";
+import { Client } from "discord.js";
+import commands from "./commands";
 
 dotenv.config();
 

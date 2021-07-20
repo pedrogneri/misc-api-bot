@@ -4,16 +4,19 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon src/index.ts"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "discord.js": "^12.5.3",
     "dotenv": "^10.0.0",
-    "node-vibrant": "^3.2.1-alpha.1"
+    "node-vibrant": "^3.2.1-alpha.1",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5"
   },
   "devDependencies": {
+    "@types/node": "^16.3.3",
     "nodemon": "^2.0.7"
   }
 }

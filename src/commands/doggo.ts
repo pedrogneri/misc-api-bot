@@ -1,6 +1,6 @@
-const axios = require("axios");
-const { MessageEmbed } = require("discord.js");
-const APIS_URL = require("../apis");
+import axios from "axios";
+import { Message, MessageEmbed } from "discord.js";
+import APIS_URL from "../apis";
 
 const COMMAND = "doggo";
 const URL = APIS_URL.theDogAPI;
@@ -11,7 +11,7 @@ const getDogImage = async () => {
   return data[0].url;
 };
 
-const action = async (message) => {
+const action = async (message: Message) => {
   const embed = new MessageEmbed();
 
   try {
@@ -30,4 +30,4 @@ const action = async (message) => {
   message.channel.send(embed);
 };
 
-module.exports = { COMMAND, action };
+export default { COMMAND, action };
