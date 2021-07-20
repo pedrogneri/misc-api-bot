@@ -1,8 +1,10 @@
 const axios = require("axios");
 const { MessageEmbed } = require("discord.js");
 const Vibrant = require("node-vibrant");
+const APIS_URL = require("../apis");
 
 const COMMAND = "poke";
+const URL = APIS_URL.pokeAPI;
 
 const getColorHex = (rgb) => {
   let color = "#";
@@ -21,9 +23,7 @@ const getColorHex = (rgb) => {
 };
 
 const getPokemon = async (parameter) => {
-  const { data } = await axios.get(
-    `https://pokeapi.co/api/v2/pokemon/${parameter}`
-  );
+  const { data } = await axios.get(`${URL}/${parameter}`);
 
   return data;
 };
@@ -58,7 +58,7 @@ const action = async (message, args) => {
 
     let description = number;
 
-    embed.setTitle(`${name}`);
+    embed.setTitle(name);
     embed.setThumbnail(image);
     embed.setColor(color);
 

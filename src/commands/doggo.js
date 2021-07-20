@@ -1,12 +1,12 @@
 const axios = require("axios");
 const { MessageEmbed } = require("discord.js");
+const APIS_URL = require("../apis");
 
 const COMMAND = "doggo";
+const URL = APIS_URL.theDogAPI;
 
 const getDogImage = async () => {
-  const { data } = await axios.get(
-    "https://api.thedogapi.com/v1/images/search"
-  );
+  const { data } = await axios.get(URL);
 
   return data[0].url;
 };
