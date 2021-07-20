@@ -16,7 +16,8 @@ const action = async (message) => {
 
   try {
     const doggo = await getDogImage();
-    const title = ":dog: ".repeat(5);
+    const dogEmoji = ":dog:";
+    const title = Array(5).fill(dogEmoji).join(" @ ");
 
     embed.setTitle(title);
     embed.setImage(doggo);
