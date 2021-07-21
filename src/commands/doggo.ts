@@ -5,8 +5,12 @@ import APIS_URL from "../apis";
 const COMMAND = "doggo";
 const URL = APIS_URL.theDogAPI;
 
+type TheDogAPIResponse = {
+  url: string;
+}
+
 const getDogImage = async () => {
-  const { data } = await axios.get(URL);
+  const { data } = await axios.get<TheDogAPIResponse[]>(URL);
 
   return data[0].url;
 };

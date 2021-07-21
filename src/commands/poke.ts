@@ -6,6 +6,23 @@ import APIS_URL from "../apis";
 const COMMAND = "poke";
 const URL = APIS_URL.pokeAPI;
 
+type PokeAPIResponse = {
+  id: number,
+  name: string,
+  types: {
+    type: {
+      name: string,
+    },
+  }[],
+  sprites: {
+    other: {
+      "official-artwork": {
+        front_default: string,
+      }
+    }
+  }
+}
+
 const getColorHex = (rgb: number[]) => {
   let color = "#";
 
@@ -22,7 +39,7 @@ const getColorHex = (rgb: number[]) => {
   return color;
 };
 
-const getPokemon = async (parameter: string) => {
+const getPokemon = async (parameter: string): Promise<PokeAPIResponse> => {
   const { data } = await axios.get(`${URL}/${parameter}`);
 
   return data;
